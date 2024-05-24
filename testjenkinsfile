@@ -11,15 +11,15 @@ pipeline{
         }
         stage('package'){
             steps{
+                sh 'rm -rf *.tgz || echo " "'
                 sh 'npm pack'
             }
         }
         stage('upload artifact'){
             steps{
-                sh 'rm -rf *.tgz || echo " "'
                  sh 'curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T \
-            *.tgz \
-            "http://ec2-54-236-46-186.compute-1.amazonaws.com:8081/artifactory/utc-nodejs/utc-app-${BUILD_ID}.tgz"'
+                 *.tgz \
+                 "http://ec2-54-236-46-186.compute-1.amazonaws.com:8081/artifactory/utc-nodejs/utc-app-${BUILD_ID}.tgz"'
             }
            
         }
